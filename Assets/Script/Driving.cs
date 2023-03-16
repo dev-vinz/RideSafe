@@ -13,10 +13,6 @@ public class Driving : MonoBehaviour
 
     void Update()
     {
-        // Gets the input informations
-        float x = Input.GetAxis("Horizontal");
-        float y = Input.GetAxis("Vertical");
-
         if(Input.GetKey(KeyCode.W))
         {
             transform.Translate(Vector3.forward * speed * Time.deltaTime);
