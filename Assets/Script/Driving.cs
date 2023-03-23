@@ -23,16 +23,17 @@ public class Driving : MonoBehaviour
         {
             transform.Translate(Vector3.forward * baseSpeed * speed * Time.deltaTime);
 
+            float reverse_rotation = speed < 0 ? -1f : 1f;
+
             if (Input.GetKey(KeyCode.D))
             {
-                transform.Rotate(new Vector3(0, direction * baseRotation, 0));
+                transform.Rotate(new Vector3(0, reverse_rotation* direction * baseRotation, 0));
             }
             else if (Input.GetKey(KeyCode.A))
             {
-                transform.Rotate(new Vector3(0, direction * baseRotation, 0));
+                transform.Rotate(new Vector3(0, reverse_rotation * direction * baseRotation, 0));
             }
         }
-        
 
         // V1 : driving just with the keys
         /*
