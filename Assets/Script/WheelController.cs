@@ -15,7 +15,7 @@ public class WheelController : MonoBehaviour
     [SerializeField] Transform backLeftTransform;
 
     public float acceleration = 500f;
-    public float breakingForce = 300f;
+    public float breakingForce = 600000f;
     public float maxTurnAngle = 15f;
 
     private float currentAcceleration = 0f;
@@ -30,6 +30,7 @@ public class WheelController : MonoBehaviour
 
         if(Input.GetKey(KeyCode.Space))
         {
+            currentAcceleration = 0f;
             currentBreakingForce = breakingForce;
         }
         else
@@ -40,6 +41,8 @@ public class WheelController : MonoBehaviour
         // Forward tracking car
         frontRight.motorTorque = currentAcceleration;
         frontLeft.motorTorque = currentAcceleration;
+        backRight.motorTorque = currentAcceleration;
+        backLeft.motorTorque = currentAcceleration;
 
         frontRight.brakeTorque = currentBreakingForce;
         frontLeft.brakeTorque = currentBreakingForce;
