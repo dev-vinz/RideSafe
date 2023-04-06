@@ -114,7 +114,7 @@ WheelCollider:
     targetPosition: 0.5
   m_SuspensionDistance: 0.1
   m_ForceAppPointDistance: 0
-  m_Mass: 20
+  m_Mass: 2
   m_WheelDampingRate: 0.25
   m_ForwardFriction:
     m_ExtremumSlip: 100
@@ -123,10 +123,10 @@ WheelCollider:
     m_AsymptoteValue: 100
     m_Stiffness: 1
   m_SidewaysFriction:
-    m_ExtremumSlip: 0.2
-    m_ExtremumValue: 1
-    m_AsymptoteSlip: 0.5
-    m_AsymptoteValue: 0.75
+    m_ExtremumSlip: 100
+    m_ExtremumValue: 100
+    m_AsymptoteSlip: 100
+    m_AsymptoteValue: 100
     m_Stiffness: 1
   m_Enabled: 1
 --- !u!1 &1824893170848787288
@@ -176,7 +176,7 @@ WheelCollider:
     targetPosition: 0.5
   m_SuspensionDistance: 0.1
   m_ForceAppPointDistance: 0
-  m_Mass: 20
+  m_Mass: 2
   m_WheelDampingRate: 0.25
   m_ForwardFriction:
     m_ExtremumSlip: 100
@@ -185,10 +185,10 @@ WheelCollider:
     m_AsymptoteValue: 100
     m_Stiffness: 1
   m_SidewaysFriction:
-    m_ExtremumSlip: 0.2
-    m_ExtremumValue: 1
-    m_AsymptoteSlip: 0.5
-    m_AsymptoteValue: 0.75
+    m_ExtremumSlip: 100
+    m_ExtremumValue: 100
+    m_AsymptoteSlip: 100
+    m_AsymptoteValue: 100
     m_Stiffness: 1
   m_Enabled: 1
 --- !u!1 &2831233456220018746
@@ -238,7 +238,7 @@ WheelCollider:
     targetPosition: 0.5
   m_SuspensionDistance: 0.1
   m_ForceAppPointDistance: 0
-  m_Mass: 20
+  m_Mass: 2
   m_WheelDampingRate: 0.25
   m_ForwardFriction:
     m_ExtremumSlip: 100
@@ -247,10 +247,10 @@ WheelCollider:
     m_AsymptoteValue: 100
     m_Stiffness: 1
   m_SidewaysFriction:
-    m_ExtremumSlip: 0.2
-    m_ExtremumValue: 1
-    m_AsymptoteSlip: 0.5
-    m_AsymptoteValue: 0.75
+    m_ExtremumSlip: 100
+    m_ExtremumValue: 100
+    m_AsymptoteSlip: 100
+    m_AsymptoteValue: 100
     m_Stiffness: 1
   m_Enabled: 1
 --- !u!1 &3474945156604333001
@@ -399,7 +399,7 @@ WheelCollider:
     targetPosition: 0.5
   m_SuspensionDistance: 0.1
   m_ForceAppPointDistance: 0
-  m_Mass: 20
+  m_Mass: 2
   m_WheelDampingRate: 0.25
   m_ForwardFriction:
     m_ExtremumSlip: 100
@@ -408,10 +408,10 @@ WheelCollider:
     m_AsymptoteValue: 100
     m_Stiffness: 1
   m_SidewaysFriction:
-    m_ExtremumSlip: 0.2
-    m_ExtremumValue: 1
-    m_AsymptoteSlip: 0.5
-    m_AsymptoteValue: 0.75
+    m_ExtremumSlip: 100
+    m_ExtremumValue: 100
+    m_AsymptoteSlip: 100
+    m_AsymptoteValue: 100
     m_Stiffness: 1
   m_Enabled: 1
 --- !u!1 &7118762931400538822
