@@ -14,6 +14,9 @@ public class WheelController : MonoBehaviour
     [SerializeField] Transform backRightTransform;
     [SerializeField] Transform backLeftTransform;
 
+    [SerializeField] Light rearLeft;
+    [SerializeField] Light rearRight;
+
     public float acceleration = 500f;
     public float breakingForce = 600f;
     public float maxTurnAngle = 15f;
@@ -21,6 +24,12 @@ public class WheelController : MonoBehaviour
     private float currentAcceleration = 0f;
     private float currentBreakingForce = 0f;
     private float currentTurnAngle = 0f;
+
+    private void start()
+    {
+        rearLeft.intensity = 0;
+        rearRight.intensity = 0;
+    }
 
     private void FixedUpdate()
     {
@@ -32,9 +41,13 @@ public class WheelController : MonoBehaviour
         {
             currentAcceleration = 0f;
             currentBreakingForce = breakingForce;
+            rearLeft.intensity = 10;
+            rearRight.intensity = 10;
         }
         else
         {
+            rearLeft.intensity = 0;
+            rearRight.intensity = 0;
             currentBreakingForce = 0f;
         }
 
