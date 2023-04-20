@@ -600,7 +600,7 @@ MonoBehaviour:
   rearRight: {fileID: 1091376712402844452}
   acceleration: 500
   breakingForce: 300
-  maxTurnAngle: 15
+  maxTurnAngle: 25
 --- !u!1 &7742527936716524700
 GameObject:
   m_ObjectHideFlags: 0

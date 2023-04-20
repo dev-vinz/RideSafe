@@ -17,7 +17,6 @@ public class Shooting : MonoBehaviour
         // Check if the collision is with the car
         if (collision.gameObject.name == "Sedan")
         {
-            Debug.Log("WWWOOOOOWWW");
             rigidBody.AddForce(new Vector3(0, rigidBody.mass * force, 0));
         }
     }

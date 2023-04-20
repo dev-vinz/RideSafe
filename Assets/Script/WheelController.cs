@@ -25,10 +25,20 @@ public class WheelController : MonoBehaviour
     private float currentBreakingForce = 0f;
     private float currentTurnAngle = 0f;
 
-    private void start()
+    private new Transform transform;
+
+    private Vector3 initialPosition;
+    private Quaternion initialRotation;
+
+    private void Start()
     {
         rearLeft.intensity = 0;
         rearRight.intensity = 0;
+
+        transform = GetComponent<Transform>();
+
+        initialPosition = transform.position;
+        initialRotation = transform.rotation;
     }
 
     private void FixedUpdate()
@@ -47,6 +57,16 @@ public class WheelController : MonoBehaviour
             rearLeft.intensity = 0;
             rearRight.intensity = 0;
             currentBreakingForce = 0f;
+        }
+
+        if(Input.GetKey(KeyCode.R))
+        {
+            currentAcceleration = 0f;
+            currentBreakingForce = 0f;
+            currentTurnAngle = 0f;
+
+            transform.position = initialPosition;
+            transform.rotation = initialRotation;
         }
 
         // Forward tracking car
