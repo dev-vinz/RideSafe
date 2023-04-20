@@ -4,14 +4,8 @@ using UnityEngine;
 
 public class Shooting : MonoBehaviour
 {
-    private Rigidbody rigidBody;
-    private int force;
-
-    void Start()
-    {
-        rigidBody = GetComponent<Rigidbody>();
-        force = 500;
-    }
+    [SerializeField] Rigidbody rigidBody;
+    private int force = 500;
 
     void Update()
     {
@@ -23,6 +17,7 @@ public class Shooting : MonoBehaviour
         // Check if the collision is with the car
         if (collision.gameObject.name == "Sedan")
         {
+            Debug.Log("WWWOOOOOWWW");
             rigidBody.AddForce(new Vector3(0, rigidBody.mass * force, 0));
         }
     }

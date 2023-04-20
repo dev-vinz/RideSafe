@@ -19,7 +19,7 @@ public class WheelController : MonoBehaviour
 
     public float acceleration = 500f;
     public float breakingForce = 600f;
-    public float maxTurnAngle = 15f;
+    public float maxTurnAngle = 25f;
 
     private float currentAcceleration = 0f;
     private float currentBreakingForce = 0f;
@@ -34,8 +34,6 @@ public class WheelController : MonoBehaviour
     private void FixedUpdate()
     {
         currentAcceleration = acceleration * Input.GetAxis("Vertical");
-
-        Debug.Log("currentAcceleration : " + currentAcceleration);
 
         if(Input.GetKey(KeyCode.Space))
         {
@@ -64,8 +62,6 @@ public class WheelController : MonoBehaviour
 
         currentTurnAngle = maxTurnAngle * Input.GetAxis("Horizontal");
 
-        Debug.Log("currentTurnAngle : " + currentTurnAngle);
-
         frontLeft.steerAngle = currentTurnAngle;
         frontRight.steerAngle = currentTurnAngle;
 
@@ -81,9 +77,6 @@ public class WheelController : MonoBehaviour
         Quaternion rotation;
 
         col.GetWorldPose(out position, out rotation);
-
-        Debug.Log("position : " + position);
-        Debug.Log("rotation : " + rotation);
 
         trans.position = position;
         trans.rotation = rotation;
