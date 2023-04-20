@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class Driving : MonoBehaviour
@@ -39,11 +37,11 @@ public class Driving : MonoBehaviour
         /*
         if(Input.GetKey(KeyCode.W))
         {
-            transform.Translate(Vector3.forward * speed * Time.deltaTime);
+            transform.Translate(speed * Time.deltaTime * Vector3.forward);
         }
-        else if(Input.GetKey(KeyCode.S))
+        else if (Input.GetKey(KeyCode.S))
         {
-            transform.Translate(-Vector3.forward * speed * Time.deltaTime);
+            transform.Translate(speed * Time.deltaTime * -Vector3.forward);
         }
 
         if (Input.GetKey(KeyCode.D))
