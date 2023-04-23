@@ -60,7 +60,6 @@ public class TimerScript : MonoBehaviour
     private void checkForStarting()
     {
         float dist = Vector3.Distance(carTransform.position, StartLineTransform.position);
-        Debug.Log("Distance to line : " + dist);
 
         if(dist < collideDistance)
         {
@@ -71,7 +70,6 @@ public class TimerScript : MonoBehaviour
     private void checkForFinishing()
     {
         float dist = Vector3.Distance(carTransform.position, FinishLineTransform.position);
-        Debug.Log("Distance to line : " + dist);
 
         if(dist < collideDistance && timeValue > minTime)
         {
