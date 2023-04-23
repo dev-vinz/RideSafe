@@ -4,15 +4,26 @@ using UnityEngine.UI;
 
 public class TimerScript : MonoBehaviour
 {
-    public Text text;
+
+    [SerializeField] Text text;
+    [SerializeField] Transform carTransform;
+    [SerializeField] Transform StartLineTransform;
+    [SerializeField] Transform FinishLineTransform;
 
     private bool started;
 
     private float timeValue;
+    private float collideDistance;
+    private float minTime;
 
     private string seconds;
     private string minutes;
     private string hours;
+
+    public void Restart()
+    {
+        minTime = timeValue + 20f;
+    }
 
     // Start is called before the first frame update
     void Start()
@@ -21,8 +32,12 @@ public class TimerScript : MonoBehaviour
         minutes = "00";
         hours = "00";
 
-        started = true;
+        started = false;
         timeValue = 0f;
+        collideDistance = 4f;
+        minTime = 20f;
+
+        text.text = "00:00:00";
     }
 
     // Update is called once per frame
@@ -31,8 +46,43 @@ public class TimerScript : MonoBehaviour
         if(started)
         {
             timeValue += Time.deltaTime;
-        }
 
+            UpdateTimerDisplay();
+
+            checkForFinishing();
+        }
+        else
+        {
+            checkForStarting();
+        }
+    }
+
+    private void checkForStarting()
+    {
+        float dist = Vector3.Distance(carTransform.position, StartLineTransform.position);
+        Debug.Log("Distance to line : " + dist);
+
+        if(dist < collideDistance)
+        {
+            started = true;
+        }
+    }
+
+    private void checkForFinishing()
+    {
+        float dist = Vector3.Distance(carTransform.position, FinishLineTransform.position);
+        Debug.Log("Distance to line : " + dist);
+
+        if(dist < collideDistance && timeValue > minTime)
+        {
+            started = false;
+            timeValue = 0f;
+            UpdateTimerDisplay();
+        }
+    }
+
+    private void UpdateTimerDisplay()
+    {
         float time = timeValue;
 
         // hours
@@ -74,6 +124,6 @@ public class TimerScript : MonoBehaviour
         }
 
 
-        text.text = hours + ":" + minutes + ":" + seconds;//timeValue.ToString();
+        text.text = hours + ":" + minutes + ":" + seconds;
     }
 }

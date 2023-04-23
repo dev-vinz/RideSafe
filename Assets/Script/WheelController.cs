@@ -17,6 +17,8 @@ public class WheelController : MonoBehaviour
     [SerializeField] Light rearLeft;
     [SerializeField] Light rearRight;
 
+    [SerializeField] GameObject timer;
+
     public float acceleration = 500f;
     public float breakingForce = 600f;
     public float maxTurnAngle = 25f;
@@ -30,6 +32,8 @@ public class WheelController : MonoBehaviour
     private Vector3 initialPosition;
     private Quaternion initialRotation;
 
+    private TimerScript timerScript;
+
     private void Start()
     {
         rearLeft.intensity = 0;
@@ -39,6 +43,8 @@ public class WheelController : MonoBehaviour
 
         initialPosition = transform.position;
         initialRotation = transform.rotation;
+
+        timer.TryGetComponent<TimerScript>(out timerScript);
     }
 
     private void FixedUpdate()
@@ -67,6 +73,11 @@ public class WheelController : MonoBehaviour
 
             transform.position = initialPosition;
             transform.rotation = initialRotation;
+
+            if (timerScript != null)
+            {
+                timerScript.Restart();
+            }
         }
 
         // Forward tracking car
