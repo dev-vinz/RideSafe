@@ -38,6 +38,9 @@ public class WheelController : MonoBehaviour
     public void LaunchGame(int level)
     {
         gameStarted = true;
+        currentAcceleration = 0f;
+        currentBreakingForce = 0f;
+        currentTurnAngle = 0f;
 
         switch (level) 
         {
@@ -61,6 +64,11 @@ public class WheelController : MonoBehaviour
 
         initialPosition = transform.position;
         initialRotation = transform.rotation;
+    }
+
+    public void StopGame()
+    {
+        gameStarted = false;
     }
 
     private void Start()
@@ -130,10 +138,6 @@ public class WheelController : MonoBehaviour
             UpdateWheel(frontLeft, frontLeftTransform);
             UpdateWheel(backRight, backRightTransform);
             UpdateWheel(backLeft, backLeftTransform);
-        }
-        else
-        {
-
         }
     }
 

@@ -24,4 +24,9 @@ public class ScoreScript : MonoBehaviour
     {
         text.text = label + score.ToString();
     }
+
+    public string getScore()
+    {
+        return label + score.ToString();
+    }
 }

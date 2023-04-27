@@ -6,31 +6,22 @@ using TMPro;
 public class PlayHandler : MonoBehaviour
 {
     [SerializeField] Canvas minimap;
-    [SerializeField] GameObject carScript;
+    [SerializeField] GameObject game;
+
+    private GameManager gameManager;
 
     private WheelController wc;
     private int level;
 
     void Start()
     {
-        carScript.TryGetComponent<WheelController>(out wc);
+        game.TryGetComponent<GameManager>(out gameManager);
         level = 0;
     }
 
     public void LaunchGame()
     {
-        // Get the parent object
-        GameObject parent = transform.parent.gameObject;
-
-        // Make it insivible
-        parent.SetActive(false);
-
-        minimap.enabled = true;
-
-        if(wc != null)
-        {
-            wc.LaunchGame(level);
-        }
+        gameManager.StartGame(level);
     }
 
     public void UpdateDropdown(int dropdownLevel)

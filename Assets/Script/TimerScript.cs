@@ -8,13 +8,14 @@ public class TimerScript : MonoBehaviour
     [SerializeField] Text text;
     [SerializeField] Transform carTransform;
 
-    //[SerializeField] Transform StartLineTransform;
-    //[SerializeField] Transform FinishLineTransform;
-
     [SerializeField] Transform FinishLineTransformC1;
     [SerializeField] Transform FinishLineTransformC2;
     [SerializeField] Transform FinishLineTransformC3;
     [SerializeField] Transform FinishLineTransformC4;
+    
+    [SerializeField] GameObject game;
+
+    [SerializeField] GameObject score;
 
     private bool started;
 
@@ -27,6 +28,9 @@ public class TimerScript : MonoBehaviour
     private string hours;
 
     private Transform finishline;
+    private WheelController wc;
+    private ScoreScript scoreScript;
+    private GameManager gameManager;
 
     public void Restart()
     {
@@ -64,9 +68,12 @@ public class TimerScript : MonoBehaviour
         started = false;
         timeValue = 0f;
         collideDistance = 4f;
-        minTime = 20f;
+        minTime = 1f; // TODO : FIX to 20
 
         text.text = "00:00:00";
+
+        score.TryGetComponent<ScoreScript>(out scoreScript);
+        game.TryGetComponent<GameManager>(out gameManager);
     }
 
     // Update is called once per frame
@@ -102,6 +109,8 @@ public class TimerScript : MonoBehaviour
 
         if(dist < collideDistance && timeValue > minTime)
         {
+            gameManager.StopGame(text.text, scoreScript.getScore());
+
             started = false;
             timeValue = 0f;
             UpdateTimerDisplay();
