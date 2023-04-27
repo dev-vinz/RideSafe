@@ -4,10 +4,16 @@ using UnityEngine;
 
 public class PlayHandler : MonoBehaviour
 {
+    [SerializeField] Canvas minimap;
+
     public void LaunchGame()
     {
-        Debug.Log("Launch Game");
+        // Get the parent object
+        GameObject parent = transform.parent.gameObject;
 
-        // TODO : Launch the game
+        // Make it insivible
+        parent.SetActive(false);
+
+        minimap.enabled = true;
     }
 }
