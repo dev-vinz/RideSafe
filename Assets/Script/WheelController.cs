@@ -33,6 +33,12 @@ public class WheelController : MonoBehaviour
     private Quaternion initialRotation;
 
     private TimerScript timerScript;
+    private bool gameStarted;
+
+    public void LaunchGame()
+    {
+        gameStarted = true;
+    }
 
     private void Start()
     {
@@ -45,61 +51,70 @@ public class WheelController : MonoBehaviour
         initialRotation = transform.rotation;
 
         timer.TryGetComponent<TimerScript>(out timerScript);
+
+        gameStarted = false;
     }
 
     private void FixedUpdate()
     {
-        currentAcceleration = acceleration * Input.GetAxis("Vertical");
-
-        if(Input.GetKey(KeyCode.Space))
+        if(gameStarted)
         {
-            currentAcceleration = 0f;
-            currentBreakingForce = breakingForce;
-            rearLeft.intensity = 10;
-            rearRight.intensity = 10;
+            currentAcceleration = acceleration * Input.GetAxis("Vertical");
+
+            if(Input.GetKey(KeyCode.Space))
+            {
+                currentAcceleration = 0f;
+                currentBreakingForce = breakingForce;
+                rearLeft.intensity = 10;
+                rearRight.intensity = 10;
+            }
+            else
+            {
+                rearLeft.intensity = 0;
+                rearRight.intensity = 0;
+                currentBreakingForce = 0f;
+            }
+
+            if(Input.GetKey(KeyCode.R))
+            {
+                currentAcceleration = 0f;
+                currentBreakingForce = 0f;
+                currentTurnAngle = 0f;
+
+                transform.position = initialPosition;
+                transform.rotation = initialRotation;
+
+                if (timerScript != null)
+                {
+                    timerScript.Restart();
+                }
+            }
+
+            // Forward tracking car
+            frontRight.motorTorque = currentAcceleration;
+            frontLeft.motorTorque = currentAcceleration;
+            backRight.motorTorque = currentAcceleration;
+            backLeft.motorTorque = currentAcceleration;
+
+            frontRight.brakeTorque = currentBreakingForce;
+            frontLeft.brakeTorque = currentBreakingForce;
+            backRight.brakeTorque = currentBreakingForce;
+            backLeft.brakeTorque = currentBreakingForce;
+
+            currentTurnAngle = maxTurnAngle * Input.GetAxis("Horizontal");
+
+            frontLeft.steerAngle = currentTurnAngle;
+            frontRight.steerAngle = currentTurnAngle;
+
+            UpdateWheel(frontRight, frontRightTransform);
+            UpdateWheel(frontLeft, frontLeftTransform);
+            UpdateWheel(backRight, backRightTransform);
+            UpdateWheel(backLeft, backLeftTransform);
         }
         else
         {
-            rearLeft.intensity = 0;
-            rearRight.intensity = 0;
-            currentBreakingForce = 0f;
+
         }
-
-        if(Input.GetKey(KeyCode.R))
-        {
-            currentAcceleration = 0f;
-            currentBreakingForce = 0f;
-            currentTurnAngle = 0f;
-
-            transform.position = initialPosition;
-            transform.rotation = initialRotation;
-
-            if (timerScript != null)
-            {
-                timerScript.Restart();
-            }
-        }
-
-        // Forward tracking car
-        frontRight.motorTorque = currentAcceleration;
-        frontLeft.motorTorque = currentAcceleration;
-        backRight.motorTorque = currentAcceleration;
-        backLeft.motorTorque = currentAcceleration;
-
-        frontRight.brakeTorque = currentBreakingForce;
-        frontLeft.brakeTorque = currentBreakingForce;
-        backRight.brakeTorque = currentBreakingForce;
-        backLeft.brakeTorque = currentBreakingForce;
-
-        currentTurnAngle = maxTurnAngle * Input.GetAxis("Horizontal");
-
-        frontLeft.steerAngle = currentTurnAngle;
-        frontRight.steerAngle = currentTurnAngle;
-
-        UpdateWheel(frontRight, frontRightTransform);
-        UpdateWheel(frontLeft, frontLeftTransform);
-        UpdateWheel(backRight, backRightTransform);
-        UpdateWheel(backLeft, backLeftTransform);
     }
 
     private void UpdateWheel(WheelCollider col, Transform trans)

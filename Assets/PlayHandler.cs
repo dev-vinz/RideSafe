@@ -5,6 +5,14 @@ using UnityEngine;
 public class PlayHandler : MonoBehaviour
 {
     [SerializeField] Canvas minimap;
+    [SerializeField] GameObject carScript;
+
+    private WheelController wc;
+
+    void Start()
+    {
+        carScript.TryGetComponent<WheelController>(out wc);
+    }
 
     public void LaunchGame()
     {
@@ -15,5 +23,10 @@ public class PlayHandler : MonoBehaviour
         parent.SetActive(false);
 
         minimap.enabled = true;
+
+        if(wc != null)
+        {
+            wc.LaunchGame();
+        }
     }
 }
