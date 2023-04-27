@@ -35,9 +35,32 @@ public class WheelController : MonoBehaviour
     private TimerScript timerScript;
     private bool gameStarted;
 
-    public void LaunchGame()
+    public void LaunchGame(int level)
     {
         gameStarted = true;
+
+        switch (level) 
+        {
+        case 0:
+            transform.position = new Vector3(-45.35f, 1.1f, 78.35f);
+            transform.rotation = Quaternion.Euler(0, -90, 0);
+            break;
+        case 1:
+            transform.position = new Vector3(212.4f, 1.22f, 121.6f);
+            transform.rotation = Quaternion.Euler(0, 90, 0);
+            break;
+        case 2:
+            transform.position = new Vector3(651.68f, 1.1f, 120.57f);
+            transform.rotation = new Quaternion(0f, 0f, 0f, 1f);
+            break;
+        case 3:
+            transform.position = new Vector3(992.70f, 1.10f, 124.71f);
+            transform.rotation = new Quaternion(0f, 0f, 0f, 1f);
+            break;
+        }
+
+        initialPosition = transform.position;
+        initialRotation = transform.rotation;
     }
 
     private void Start()
@@ -46,9 +69,6 @@ public class WheelController : MonoBehaviour
         rearRight.intensity = 0;
 
         transform = GetComponent<Transform>();
-
-        initialPosition = transform.position;
-        initialRotation = transform.rotation;
 
         timer.TryGetComponent<TimerScript>(out timerScript);
 

@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using TMPro;
 
 public class PlayHandler : MonoBehaviour
 {
@@ -8,10 +9,12 @@ public class PlayHandler : MonoBehaviour
     [SerializeField] GameObject carScript;
 
     private WheelController wc;
+    private int level;
 
     void Start()
     {
         carScript.TryGetComponent<WheelController>(out wc);
+        level = 0;
     }
 
     public void LaunchGame()
@@ -26,7 +29,12 @@ public class PlayHandler : MonoBehaviour
 
         if(wc != null)
         {
-            wc.LaunchGame();
+            wc.LaunchGame(level);
         }
+    }
+
+    public void UpdateDropdown(int dropdownLevel)
+    {
+        level = dropdownLevel;
     }
 }

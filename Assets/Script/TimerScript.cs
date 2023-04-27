@@ -7,8 +7,14 @@ public class TimerScript : MonoBehaviour
 
     [SerializeField] Text text;
     [SerializeField] Transform carTransform;
-    [SerializeField] Transform StartLineTransform;
-    [SerializeField] Transform FinishLineTransform;
+
+    //[SerializeField] Transform StartLineTransform;
+    //[SerializeField] Transform FinishLineTransform;
+
+    [SerializeField] Transform FinishLineTransformC1;
+    [SerializeField] Transform FinishLineTransformC2;
+    [SerializeField] Transform FinishLineTransformC3;
+    [SerializeField] Transform FinishLineTransformC4;
 
     private bool started;
 
@@ -20,14 +26,37 @@ public class TimerScript : MonoBehaviour
     private string minutes;
     private string hours;
 
+    private Transform finishline;
+
     public void Restart()
     {
         minTime = timeValue + 20f;
     }
 
+    public void ChangeCircuit(int level)
+    {
+        switch(level)
+        {
+            case 0:
+                finishline = FinishLineTransformC1;
+                break;
+            case 1:
+                finishline = FinishLineTransformC2;
+                break;
+            case 2:
+                finishline = FinishLineTransformC3;
+                break;
+            case 3:
+                finishline = FinishLineTransformC4;
+                break;
+        }
+    }
+
     // Start is called before the first frame update
     void Start()
     {
+        finishline = FinishLineTransformC1;
+
         seconds = "00";
         minutes = "00";
         hours = "00";
@@ -59,7 +88,7 @@ public class TimerScript : MonoBehaviour
 
     private void checkForStarting()
     {
-        float dist = Vector3.Distance(carTransform.position, StartLineTransform.position);
+        float dist = Vector3.Distance(carTransform.position, finishline.position);
 
         if(dist < collideDistance)
         {
@@ -69,7 +98,7 @@ public class TimerScript : MonoBehaviour
 
     private void checkForFinishing()
     {
-        float dist = Vector3.Distance(carTransform.position, FinishLineTransform.position);
+        float dist = Vector3.Distance(carTransform.position, finishline.position);
 
         if(dist < collideDistance && timeValue > minTime)
         {
