@@ -33,10 +33,11 @@ public class GameManager : MonoBehaviour
 
     public void StopGame(string time, string score)
     {   
-        playingCanvas.SetActive(false);
+        playingCanvas.SetActive(true);
         playingCanvas.GetComponent<Canvas>().enabled = false;
 
         menuCanvas.SetActive(true);
+        menuCanvas.GetComponent<Canvas>().enabled = false;
 
         endGameCanvas.SetActive(true);
         endGameCanvas.GetComponent<Canvas>().enabled = true;

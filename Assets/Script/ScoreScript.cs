@@ -9,15 +9,26 @@ public class ScoreScript : MonoBehaviour
     private string label;
     private int score;
 
+    private bool gameLaunched;
+
     void Start()
     {
+        gameLaunched = false;
         label = "Score : ";
         score = 0;
     }
 
     public void increaseScore(int increase)
     {
-        score += increase;
+        if(gameLaunched)
+        {
+            score += increase;
+        }
+    }
+
+    public void LaunchGame()
+    {
+        gameLaunched = true;
     }
 
     void Update()
@@ -27,6 +38,9 @@ public class ScoreScript : MonoBehaviour
 
     public string getScore()
     {
-        return label + score.ToString();
+        gameLaunched = false;
+        int oldScsore = score;
+        score = 0;
+        return label + oldScsore.ToString();
     }
 }

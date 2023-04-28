@@ -18,6 +18,7 @@ public class TimerScript : MonoBehaviour
     [SerializeField] GameObject score;
 
     private bool started;
+    private bool gameLaunched;
 
     private float timeValue;
     private float collideDistance;
@@ -56,6 +57,11 @@ public class TimerScript : MonoBehaviour
         }
     }
 
+    public void LaunchGame()
+    {
+        gameLaunched = true;
+    }
+
     // Start is called before the first frame update
     void Start()
     {
@@ -66,6 +72,8 @@ public class TimerScript : MonoBehaviour
         hours = "00";
 
         started = false;
+        gameLaunched = false;
+
         timeValue = 0f;
         collideDistance = 4f;
         minTime = 1f; // TODO : FIX to 20
@@ -97,7 +105,7 @@ public class TimerScript : MonoBehaviour
     {
         float dist = Vector3.Distance(carTransform.position, finishline.position);
 
-        if(dist < collideDistance)
+        if(dist < collideDistance && gameLaunched)
         {
             started = true;
         }
@@ -113,7 +121,10 @@ public class TimerScript : MonoBehaviour
 
             started = false;
             timeValue = 0f;
+
             UpdateTimerDisplay();
+
+            gameLaunched = false;
         }
     }
 
