@@ -9,3 +9,5 @@ Ce dernier sera évidemment calculé en fonction du temps écoulé pour terminer
  - Nicolas Aubert
  - Vincent Jeannin
  - Théo Vuilliomenet
+
+Lien sur notre wiki : [Ride Safe wiki](https://gitlab-etu.ing.he-arc.ch/isc/2022-23/niveau-3/3292.2-infographie-unity-il/ride-safe/-/wikis/home)
